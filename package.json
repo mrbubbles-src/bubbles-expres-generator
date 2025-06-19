@@ -8,11 +8,8 @@
   },
   "scripts": {
     "test": "npx vitest run --testTimeout=15000",
-    "dev": "tsx watch cli/index.js",
-    "build": "echo 'nothing to build 😎'",
     "initialrelease": "npm publish --access public",
-    "patch": "npm version patch && git add . && git commit -m 'feat: bump version' && git push --follow-tags",
-    "publish": "npm publish"
+    "patch": "npm version patch && git add . && git commit -m 'feat: bump version' && git push --follow-tags && npm publish"
   },
   "keywords": [
     "cli",
