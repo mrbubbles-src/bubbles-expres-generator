@@ -1,6 +1,6 @@
 {
   "name": "bubbles-express-generator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple CLI to scaffold Express.js starter projects.",
   "repository": {
     "type": "git",
