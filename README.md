@@ -2,7 +2,7 @@
 
 A simple CLI to scaffold Express.js starter projects.
 
-<video controls src="demo.mp4" title="bubbles-express-generator demo"></video>
+![bubbles-express demo](demo.gif)
 
 ## 🔧 Usage
 
