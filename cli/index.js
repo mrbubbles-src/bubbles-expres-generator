@@ -1,14 +1,20 @@
 #!/usr/bin/env node
+import updateNotifier from 'update-notifier';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const pkg = JSON.parse(
+  readFileSync(path.join(__dirname, '..', 'package.json')),
+);
+updateNotifier({ pkg }).notify();
 import prompts from 'prompts';
 import fs from 'fs/promises';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 import kleur from 'kleur';
 import boxen from 'boxen';
 import ora from 'ora';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 import { argv } from 'process';
 
