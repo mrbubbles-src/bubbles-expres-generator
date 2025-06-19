@@ -1,19 +1,30 @@
 {
-	"name": "bubbles-expres-generator",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"bin": {
-		"bubbles-express": "./cli/index.js"
-	},
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"type": "module",
-	"dependencies": {
-		"prompts": "^2.4.2"
-	}
+  "name": "bubbles-expres-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "bubbles-express": "./cli/index.js"
+  },
+  "scripts": {
+    "dev": "tsx watch cli/index.js",
+    "build": "echo 'nothing to build 😎'"
+  },
+  "keywords": [
+    "cli",
+    "express",
+    "generator",
+    "template",
+    "mongoose",
+    "drizzle",
+    "node",
+    "typescript",
+    "javascript"
+  ],
+  "author": "Manuel Fahrenholz @mrbubbles-src",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "prompts": "^2.4.2"
+  }
 }
