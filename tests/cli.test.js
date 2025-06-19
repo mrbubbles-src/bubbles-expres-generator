@@ -34,10 +34,16 @@ describe('bubbles-express CLI', () => {
   });
 
   afterEach(async () => {
-    await fs.emptyDir(TEST_PROJECTS_DIR);
+    const files = await fs.readdir(TEST_PROJECTS_DIR);
+    await Promise.all(
+      files.map(async (file) => {
+        if (file !== '.gitkeep') {
+          await fs.remove(path.join(TEST_PROJECTS_DIR, file));
+        }
+      }),
+    );
   });
 
-  // Dynamically generate tests for all template directories
   const templatesRoot = path.resolve(__dirname, '../templates');
   let templateDirs = [];
   try {
@@ -46,11 +52,9 @@ describe('bubbles-express CLI', () => {
       return fs.statSync(fullPath).isDirectory();
     });
   } catch (err) {
-    // If templates/ doesn't exist, skip tests
     templateDirs = [];
   }
 
-  // Extract language and db combos from template dirs like js-mongo, ts-pg, etc
   const combos = templateDirs
     .map((dir) => {
       const match = /^([a-z]+)-([a-z]+)/.exec(dir);
@@ -62,15 +66,12 @@ describe('bubbles-express CLI', () => {
     .filter(Boolean);
 
   combos.forEach(({ language, db }) => {
-    // 1. Test creation in current directory with "."
     it(`creates project in current directory with "." and no flags [${language}-${db}]`, async () => {
       const testDirName = `${language}-${db}-dot-no-flags`;
       const testDir = path.join(TEST_PROJECTS_DIR, testDirName);
       await fs.ensureDir(testDir);
-      // Add dummy file to simulate existing content
       await fs.writeFile(path.join(testDir, 'dummy.txt'), 'placeholder');
 
-      // Run CLI with overwrite env to simulate user agreeing to overwrite
       const resultOverwrite = await runCLI(['.'], testDir, {
         NODE_ENV: 'test',
         MOCK_OVERWRITE: '1',
@@ -80,7 +81,6 @@ describe('bubbles-express CLI', () => {
       const existsOverwrite = await projectExists(testDirName);
       expect(existsOverwrite).toBe(true);
 
-      // Run CLI with overwrite env to simulate user declining overwrite and renaming
       const renameDir = `${language}-${db}-renamed`;
       const resultRename = await runCLI(['.'], testDir, {
         NODE_ENV: 'test',
@@ -94,7 +94,6 @@ describe('bubbles-express CLI', () => {
       expect(existsRename).toBe(true);
     });
 
-    // 2. Test creation with custom name, no flags
     it(`creates project with name and no flags [${language}-${db}]`, async () => {
       const customName = `${language}-${db}-testbackend-no-flags`;
       const result = await runCLI([customName]);
@@ -104,7 +103,6 @@ describe('bubbles-express CLI', () => {
       expect(exists).toBe(true);
     });
 
-    // 3. Test flag-based invocation with custom name
     it(`creates project with name and flags [${language}-${db}]`, async () => {
       const customName = `${language}-${db}-testbackend-flags`;
       const langFlag = `--${language}`;
@@ -116,18 +114,15 @@ describe('bubbles-express CLI', () => {
       expect(exists).toBe(true);
     });
 
-    // 4. Test flag-based invocation in current directory
     it(`creates project in current directory with "." and flags [${language}-${db}]`, async () => {
       const testDirName = `${language}-${db}-dot-flags`;
       const testDir = path.join(TEST_PROJECTS_DIR, testDirName);
       await fs.ensureDir(testDir);
-      // Add dummy file to simulate existing content
       await fs.writeFile(path.join(testDir, 'dummy.txt'), 'placeholder');
 
       const langFlag = `--${language}`;
       const dbFlag = db === 'mongo' ? '--mongo' : '--pg';
 
-      // Run CLI with overwrite env to simulate user agreeing to overwrite
       const resultOverwrite = await runCLI(['.', langFlag, dbFlag], testDir, {
         NODE_ENV: 'test',
         MOCK_OVERWRITE: '1',
@@ -137,7 +132,6 @@ describe('bubbles-express CLI', () => {
       const existsOverwrite = await projectExists(testDirName);
       expect(existsOverwrite).toBe(true);
 
-      // Run CLI with overwrite env to simulate user declining overwrite and renaming
       const renameDir = `${language}-${db}-renamed`;
       const resultRename = await runCLI(['.', langFlag, dbFlag], testDir, {
         NODE_ENV: 'test',
