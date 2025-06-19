@@ -75,3 +75,8 @@ This will show a list of available flags and usage examples.
 
 This is my very first npm package — so it's likely to have more quirks than I realized 😅  
 Feel free to open an issue for improvements or bug fixes, or submit a pull request directly.
+
+## 🔗 Links
+
+- 📄 [Documentation](https://github.com/mrbubbles-src/bubbles-express-generator)
+- 🌐 [Website](https://github.com/mrbubbles-src/bubbles-express-generator)
