@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "bubbles-express": "./cli/index.js"
+    "bubbles-express": "cli/index.js"
   },
   "scripts": {
     "dev": "tsx watch cli/index.js",
