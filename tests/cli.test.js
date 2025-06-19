@@ -3,6 +3,12 @@ import { execa } from 'execa';
 import fs from 'fs-extra';
 import path from 'path';
 
+vi.mock('update-notifier', () => {
+  return () => ({
+    notify: () => {},
+  });
+});
+
 const CLI_PATH = path.resolve(__dirname, '../cli/index.js');
 const TEST_PROJECTS_DIR = path.resolve(__dirname, 'test-projects');
 
