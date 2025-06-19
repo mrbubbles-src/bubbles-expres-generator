@@ -7,6 +7,7 @@
     "bubbles-express": "cli/index.js"
   },
   "scripts": {
+    "test": "npx vitest run --testTimeout=15000",
     "dev": "tsx watch cli/index.js",
     "build": "echo 'nothing to build 😎'",
     "initialrelease": "npm publish --access public",
@@ -29,5 +30,10 @@
   "type": "module",
   "dependencies": {
     "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "execa": "^9.6.0",
+    "fs-extra": "^11.3.0",
+    "vitest": "^3.2.4"
   }
 }

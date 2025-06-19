@@ -19,6 +19,16 @@ const flags = {
   db: args.includes('--mongo') ? 'mongo' : args.includes('--pg') ? 'pg' : null,
 };
 
+const isTestMode = process.env.NODE_ENV === 'test';
+
+const mockResponses = isTestMode
+  ? {
+      projectName: flags.projectName ?? 'test-app',
+      language: flags.language ?? 'js',
+      db: flags.db ?? 'mongo',
+    }
+  : null;
+
 const promptQuestions = [];
 
 if (!flags.projectName || flags.projectName.trim() === '') {
@@ -54,7 +64,13 @@ if (!flags.db) {
   });
 }
 
-const response = await prompts(promptQuestions);
+let response;
+
+if (isTestMode) {
+  response = mockResponses;
+} else {
+  response = await prompts(promptQuestions);
+}
 
 response.projectName = flags.projectName ?? response.projectName;
 response.language = flags.language ?? response.language;
@@ -137,6 +153,7 @@ const createProject = async (choices) => {
         }
       });
     });
+    console.log('✅ Project created successfully.');
   } catch (error) {
     console.error('Error creating project:', error);
     return;
