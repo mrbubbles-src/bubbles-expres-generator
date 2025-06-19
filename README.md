@@ -28,11 +28,14 @@ The generator supports different project types:
 
 - **(Supabase) PostgreSQL + Drizzle ORM + TypeScript**
 - **MongoDB (Atlas) + Mongoose ODM + TypeScript**
-- _(Vanilla JavaScript variants coming soon)_
+- **(Supabase) PostgreSQL + Drizzle ORM + JavaScript**
+- **MongoDB (Atlas) + Mongoose ODM + JavaScript**
 
 ## 📁 Output
 
-A new folder will be created with the generated code based on your selections. After that, dependencies will be installed automatically.
+A new folder will be created with the generated code based on your selections.  
+If the current directory is not empty, you'll be prompted whether to overwrite it or choose a new name.  
+After that, dependencies will be installed automatically.
 
 Once it's done, you can start your project with:
 
@@ -43,6 +46,32 @@ npm run dev
 
 You're ready to go!
 
+## 🏁 Flags
+
+You can skip the interactive prompts by providing flags directly:
+
+- `--ts` or `--js`: Set the language (TypeScript or JavaScript)
+- `--pg` or `--mongo`: Choose your database (PostgreSQL or MongoDB)
+
+Example:
+
+```bash
+npx bubbles-express my-api --ts --pg
+```
+
+If all necessary flags are provided, the generator will auto-run without any questions.
+
+## 📖 Help
+
+To display the help menu, you can run:
+
+```bash
+npx bubbles-express --help
+```
+
+This will show a list of available flags and usage examples.
+
 ## 🤝 Contributions
 
-Contributions and ideas are welcome. Feel free to open issues or pull requests.
+This is my very first npm package — so it's likely to have more quirks than I realized 😅  
+Feel free to open an issue for improvements or bug fixes, or submit a pull request directly.
