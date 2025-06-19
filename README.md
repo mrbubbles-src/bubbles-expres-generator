@@ -13,7 +13,7 @@ npx bubbles-express
 Or install it globally:
 
 ```bash
-npm install -g bubbles-express
+npm install -g bubbles-express-generator
 bubbles-express
 ```
 
