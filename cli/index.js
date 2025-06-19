@@ -4,11 +4,48 @@ import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import kleur from 'kleur';
+import boxen from 'boxen';
+import ora from 'ora';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 import { argv } from 'process';
 
 const args = argv.slice(2);
+
+if (args.includes('-h') || args.includes('--help')) {
+  console.log(
+    boxen(
+      [
+        kleur.magenta().bold("🧰 Bubbles' Express Generator — Help"),
+        '',
+        kleur.white('Usage:'),
+        '  npx bubbles-express [project-name|.] [flags]',
+        '',
+        kleur.white('Flags:'),
+        '  --ts       Use TypeScript',
+        '  --js       Use JavaScript',
+        '  --mongo    Use MongoDB (Mongoose)',
+        '  --pg       Use PostgreSQL (Supabase + Drizzle)',
+        '  -h, --help Show this help message',
+        '',
+        kleur.gray('Example:'),
+        '  npx bubbles-express my-api --ts --mongo',
+        '  npx bubbles-express . --js --pg',
+      ].join('\n'),
+      {
+        padding: 1,
+        margin: 1,
+        borderStyle: 'classic',
+        borderColor: 'magenta',
+        title: 'Help',
+        titleAlignment: 'center',
+      },
+    ),
+  );
+  process.exit(0);
+}
 
 const isDot = args.includes('.') || args[0] === '.';
 
@@ -20,6 +57,42 @@ const flags = {
 };
 
 const isTestMode = process.env.NODE_ENV === 'test';
+
+if (!isTestMode) {
+  const hasFlags = flags.language && flags.db;
+  const introMessage = hasFlags
+    ? `${kleur
+        .green()
+        .bold('🚀 Oh, I see you know what you want — let’s get started!')}
+
+${kleur.dim(
+  `> npx bubbles-express ${flags.projectName} --${flags.language} --${flags.db}`,
+)}
+
+${kleur.gray(
+  `project: ${flags.projectName} | language: ${flags.language} | database: ${flags.db}`,
+)}`
+    : `${kleur.magenta().bold("👋 Welcome to Bubbles' Express Generator!")}
+
+${kleur.white("Answer a few questions and we'll get you set up quickly.")}
+
+💡 ${kleur.italic('Need help? Stop and run')} ${kleur.bold(
+        'npx bubbles-express -h',
+      )}
+`;
+
+  console.log(
+    boxen(introMessage, {
+      padding: 1,
+      margin: 1,
+      borderStyle: 'classic',
+      borderColor: hasFlags ? 'green' : 'magenta',
+      title: hasFlags ? 'Auto Setup' : "Let's get started",
+      titleAlignment: 'center',
+      textAlignment: 'left',
+    }),
+  );
+}
 
 const mockResponses = isTestMode
   ? {
@@ -112,6 +185,41 @@ const createProject = async (choices) => {
       choices.projectName === '.' ? '.' : choices.projectName,
     );
 
+    const existingFiles = await fs.readdir(targetDir).catch(() => []);
+    if (existingFiles.length > 0) {
+      const overwrite =
+        isTestMode && process.env.MOCK_OVERWRITE !== undefined
+          ? process.env.MOCK_OVERWRITE === '1'
+          : (
+              await prompts({
+                type: 'confirm',
+                name: 'overwrite',
+                message: `The directory "${path.basename(
+                  targetDir,
+                )}" is not empty. Overwrite?`,
+                initial: false,
+              })
+            ).overwrite;
+
+      if (!overwrite) {
+        const newName =
+          isTestMode && process.env.MOCK_RENAME
+            ? process.env.MOCK_RENAME
+            : (
+                await prompts({
+                  type: 'text',
+                  name: 'newName',
+                  message: 'Choose a new name for your project:',
+                  initial: `${choices.projectName}-new`,
+                })
+              ).newName;
+        choices.projectName = newName;
+        return await createProject(choices);
+      } else {
+        await fs.rm(targetDir, { recursive: true, force: true });
+      }
+    }
+
     await fs.mkdir(targetDir, { recursive: true });
     await fs.cp(templateDir, targetDir, { recursive: true });
 
@@ -140,23 +248,59 @@ const createProject = async (choices) => {
 
     await replacePlaceholders(targetDir);
 
-    console.log('Installing dependencies...');
+    const spinner = ora('📦 Installing dependencies...').start();
     const { exec } = await import('child_process');
     await new Promise((resolve, reject) => {
       exec('npm install', { cwd: targetDir }, (error, stdout, stderr) => {
         if (error) {
-          console.error(`npm install failed: ${stderr}`);
+          spinner.fail(kleur.red('❌ npm install failed'));
+          console.error(kleur.red(stderr));
           reject(error);
         } else {
-          console.log(stdout);
+          spinner.succeed(kleur.green('✅ Dependencies installed'));
+          console.log(kleur.gray(stdout));
           resolve();
         }
       });
     });
-    console.log('✅ Project created successfully.');
+    const summaryBox = boxen(
+      [
+        `🎉 ${kleur.bold('Project created successfully!')}`,
+        `${kleur.gray(
+          `> npx bubbles-express ${choices.projectName} --${choices.language} --${choices.db}`,
+        )}`,
+        '',
+        `${kleur.bold('📂 Project Folder:')} ${kleur.green(
+          path.basename(targetDir),
+        )}`,
+        `${kleur.bold('🛠️  Language:')}       ${kleur.yellow(
+          choices.language,
+        )}`,
+        `${kleur.bold('🗃️  Database:')}       ${kleur.cyan(choices.db)}`,
+        '',
+        kleur.italic('Happy coding! 🚀'),
+        '',
+        kleur.bold('👉 Next steps:'),
+        `  ${kleur.dim(`cd ${path.basename(targetDir)}`)}`,
+        `  ${kleur.dim('npm run dev')}`,
+      ].join('\n'),
+      {
+        padding: { top: 1, bottom: 1, left: 2, right: 2 },
+        margin: 1,
+        borderStyle: 'classic',
+        borderColor: 'green',
+        title: 'Setup Complete',
+        titleAlignment: 'center',
+        textAlignment: 'left',
+        align: 'left',
+      },
+    );
+
+    console.log(summaryBox);
   } catch (error) {
     console.error('Error creating project:', error);
     return;
   }
 };
+
 createProject(response);
