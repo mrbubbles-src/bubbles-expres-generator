@@ -10,7 +10,7 @@
     "dev": "tsx watch cli/index.js",
     "build": "echo 'nothing to build 😎'",
     "release": "npm publish --access public",
-    "patch": "npm version patch && git push --follow-tags && npm publish"
+    "patch": "npm version patch && git add . && git commit -m 'feat: bump version' && git push --follow-tags && npm publish"
   },
   "keywords": [
     "cli",
