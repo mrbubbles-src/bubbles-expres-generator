@@ -14,6 +14,15 @@
   "bin": {
     "bubbles-express": "cli/index.js"
   },
+  "engines": {
+    "node": ">=18"
+  },
+  "contributors": [
+    {
+      "name": "mrbubbles-src",
+      "url": "https://github.com/mrbubbles-src"
+    }
+  ],
   "scripts": {
     "test": "npx vitest run --testTimeout=15000",
     "initialrelease": "npm publish --access public",
