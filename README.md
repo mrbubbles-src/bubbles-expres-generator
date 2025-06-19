@@ -2,7 +2,7 @@
 
 A simple CLI to scaffold Express.js starter projects.
 
-![bubbles-express demo](demo.gif)
+![bubbles-express](bubbles-express.png)
 
 ## 🔧 Usage
 
