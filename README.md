@@ -2,6 +2,8 @@
 
 A simple CLI to scaffold Express.js starter projects.
 
+<video controls src="demo.mp4" title="bubbles-express-generator demo"></video>
+
 ## 🔧 Usage
 
 You can use the CLI via `npx` (no installation needed):
