@@ -1,7 +1,15 @@
 {
   "name": "bubbles-express-generator",
   "version": "1.0.2",
-  "description": "",
+  "description": "A simple CLI to scaffold Express.js starter projects.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrbubbles-src/bubbles-express-generator.git"
+  },
+  "homepage": "https://github.com/mrbubbles-src/bubbles-express-generator#readme",
+  "bugs": {
+    "url": "https://github.com/mrbubbles-src/bubbles-express-generator/issues"
+  },
   "main": "index.js",
   "bin": {
     "bubbles-express": "cli/index.js"
