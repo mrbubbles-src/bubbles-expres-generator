@@ -1,0 +1,32 @@
+{
+	"compilerOptions": {
+		"incremental": true,
+		"target": "es2022",
+		"module": "nodenext",
+		"rootDir": ".",
+		"moduleResolution": "nodenext",
+		"resolveJsonModule": true,
+		"sourceMap": true,
+		"outDir": "./dist",
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"]
+		},
+		"removeComments": true,
+		"noEmitOnError": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"skipLibCheck": true,
+		"types": ["node"],
+		"allowImportingTsExtensions": true,
+		"noEmit": true
+	},
+	"include": ["src/**/*.ts", "*.config.ts"],
+	"exclude": ["node_modules", "dist"]
+}

@@ -1,0 +1,19 @@
+{
+	"name": "bubbles-expres-generator",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"bin": {
+		"bubbles-express": "./cli/index.js"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "module",
+	"dependencies": {
+		"prompts": "^2.4.2"
+	}
+}
