@@ -10,10 +10,15 @@ You can use the CLI via `npx` (no installation needed):
 npx bubbles-express
 ```
 
-Or install it globally:
+Or if you prefer to, install it globally:
 
 ```bash
 npm install -g bubbles-express-generator
+```
+
+Then you can run it with:
+
+```bash
 bubbles-express
 ```
 
