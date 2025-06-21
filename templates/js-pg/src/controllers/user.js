@@ -26,7 +26,7 @@ export const createUser = async (req, res, next) => {
       .returning({
         id: usersTable.id,
         username: usersTable.username,
-        verfied: usersTable.verified,
+        verified: usersTable.verified,
         role: usersTable.role,
       });
 

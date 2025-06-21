@@ -32,7 +32,7 @@ export const createUser = async (
 			.returning({
 				id: usersTable.id,
 				username: usersTable.username,
-				verfied: usersTable.verified,
+				verified: usersTable.verified,
 				role: usersTable.role,
 			});
 
