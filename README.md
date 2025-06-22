@@ -1,22 +1,12 @@
-# bubbles-express-generator
+# bubbles-express-generator [![npm version](https://badge.fury.io/js/bubbles-express-generator.svg)](https://www.npmjs.com/package/bubbles-express-generator)
 
-[![npm version](https://badge.fury.io/js/bubbles-express-generator.svg)](https://www.npmjs.com/package/bubbles-express-generator)
+## A simple CLI to scaffold Express.js starter projects.
 
-## 📜 Table of Contents
-
-- [🔧 Usage](#🔧-usage-🔝)
-- [🧪 Variants](#🧪-variants-🔝)
-- [📁 Output](#📁-output-🔝)
-- [🏁 Flags](#🏁-flags-🔝)
-- [📖 Help](#📖-help-🔝)
-- [🤝 Contributions](#🤝-contributions-🔝)
-- [🔗 Links](#🔗-links-🔝)
-
-A simple CLI to scaffold Express.js starter projects.
+[🔧 Usage](#🔧-usage-🔝) | [🧪 Variants](#🧪-variants-🔝) | [📁 Output](#📁-output-🔝) | [🏁 Flags](#🏁-flags-🔝) | [📖 Help](#📖-help-🔝) | [🤝 Contributions](#🤝-contributions-🔝) | [🔗 Links](#🔗-links-🔝)
 
 ![bubbles-express](bubbles-express.png)
 
-## 🔧 Usage [🔝](#📜-table-of-contents)
+### 🔧 Usage [🔝](#bubbles-express-generator)
 
 You can use the CLI via `npx` (no installation needed):
 
@@ -36,7 +26,7 @@ Then you can run it with:
 bubbles-express
 ```
 
-## 🧪 Variants [🔝](#📜-table-of-contents)
+### 🧪 Variants [🔝](#bubbles-express-generator)
 
 The generator supports different project types:
 
@@ -45,7 +35,7 @@ The generator supports different project types:
 - **(Supabase) PostgreSQL + Drizzle ORM + JavaScript**
 - **MongoDB (Atlas) + Mongoose ODM + JavaScript**
 
-## 📁 Output [🔝](#📜-table-of-contents)
+### 📁 Output [🔝](#bubbles-express-generator)
 
 A new folder will be created with the generated code based on your selections.  
 If the current directory is not empty, you'll be prompted whether to overwrite it or choose a new name.  
@@ -60,7 +50,7 @@ npm run dev
 
 You're ready to go!
 
-## 🏁 Flags [🔝](#📜-table-of-contents)
+### 🏁 Flags [🔝](#bubbles-express-generator)
 
 You can skip the interactive prompts by providing flags directly:
 
@@ -75,7 +65,7 @@ npx bubbles-express my-api --ts --pg
 
 If all necessary flags are provided, the generator will auto-run without any questions.
 
-## 📖 Help [🔝](#📜-table-of-contents)
+### 📖 Help [🔝](#bubbles-express-generator)
 
 To display the help menu, you can run:
 
@@ -85,12 +75,12 @@ npx bubbles-express --help
 
 This will show a list of available flags and usage examples.
 
-## 🤝 Contributions [🔝](#📜-table-of-contents)
+### 🤝 Contributions [🔝](#bubbles-express-generator)
 
 This is my very first npm package — so it's likely to have more quirks than I realized 😅  
 Feel free to open an issue for improvements or bug fixes, or submit a pull request directly.
 
-## 🔗 Links [🔝](#📜-table-of-contents)
+### 🔗 Links [🔝](#bubbles-express-generator)
 
 - 📄 [Documentation](https://github.com/mrbubbles-src/bubbles-express-generator)
 - 🌐 [Website](https://github.com/mrbubbles-src/bubbles-express-generator)
