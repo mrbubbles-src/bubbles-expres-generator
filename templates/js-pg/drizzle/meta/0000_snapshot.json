@@ -1,5 +1,5 @@
 {
-  "id": "0a790103-27c5-4a33-b63f-6588ec79bbf2",
+  "id": "446dfe12-4a59-4e4f-86be-72baf9af0b93",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -10,26 +10,26 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "varchar(36)",
+          "type": "text",
           "primaryKey": true,
           "notNull": true,
           "default": "gen_random_uuid()"
         },
         "username": {
           "name": "username",
-          "type": "varchar(20)",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         },
         "email": {
           "name": "email",
-          "type": "varchar(255)",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         },
         "password": {
           "name": "password",
-          "type": "varchar(255)",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         },
@@ -83,7 +83,20 @@
         }
       },
       "policies": {},
-      "checkConstraints": {},
+      "checkConstraints": {
+        "password_min_length": {
+          "name": "password_min_length",
+          "value": "char_length(\"users\".\"password\") >= 8"
+        },
+        "username_min_length": {
+          "name": "username_min_length",
+          "value": "char_length(\"users\".\"username\") >= 3"
+        },
+        "email_format": {
+          "name": "email_format",
+          "value": "\"users\".\"email\" ~* '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'"
+        }
+      },
       "isRLSEnabled": false
     }
   },
