@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/bubbles-express-generator.svg)](https://www.npmjs.com/package/bubbles-express-generator)
 
-## 📜 Inhaltsverzeichnis
+## 📜 Table of Contents
 
 - [🔧 Usage](#🔧-usage-🔝)
 - [🧪 Variants](#🧪-variants-🔝)
@@ -16,7 +16,7 @@ A simple CLI to scaffold Express.js starter projects.
 
 ![bubbles-express](bubbles-express.png)
 
-## 🔧 Usage [🔝](#📜-inhaltsverzeichnis)
+## 🔧 Usage [🔝](#📜-table-of-contents)
 
 You can use the CLI via `npx` (no installation needed):
 
@@ -36,7 +36,7 @@ Then you can run it with:
 bubbles-express
 ```
 
-## 🧪 Variants [🔝](#📜-inhaltsverzeichnis)
+## 🧪 Variants [🔝](#📜-table-of-contents)
 
 The generator supports different project types:
 
@@ -45,7 +45,7 @@ The generator supports different project types:
 - **(Supabase) PostgreSQL + Drizzle ORM + JavaScript**
 - **MongoDB (Atlas) + Mongoose ODM + JavaScript**
 
-## 📁 Output [🔝](#📜-inhaltsverzeichnis)
+## 📁 Output [🔝](#📜-table-of-contents)
 
 A new folder will be created with the generated code based on your selections.  
 If the current directory is not empty, you'll be prompted whether to overwrite it or choose a new name.  
@@ -60,7 +60,7 @@ npm run dev
 
 You're ready to go!
 
-## 🏁 Flags [🔝](#📜-inhaltsverzeichnis)
+## 🏁 Flags [🔝](#📜-table-of-contents)
 
 You can skip the interactive prompts by providing flags directly:
 
@@ -75,7 +75,7 @@ npx bubbles-express my-api --ts --pg
 
 If all necessary flags are provided, the generator will auto-run without any questions.
 
-## 📖 Help [🔝](#📜-inhaltsverzeichnis)
+## 📖 Help [🔝](#📜-table-of-contents)
 
 To display the help menu, you can run:
 
@@ -85,12 +85,12 @@ npx bubbles-express --help
 
 This will show a list of available flags and usage examples.
 
-## 🤝 Contributions [🔝](#📜-inhaltsverzeichnis)
+## 🤝 Contributions [🔝](#📜-table-of-contents)
 
 This is my very first npm package — so it's likely to have more quirks than I realized 😅  
 Feel free to open an issue for improvements or bug fixes, or submit a pull request directly.
 
-## 🔗 Links [🔝](#📜-inhaltsverzeichnis)
+## 🔗 Links [🔝](#📜-table-of-contents)
 
 - 📄 [Documentation](https://github.com/mrbubbles-src/bubbles-express-generator)
 - 🌐 [Website](https://github.com/mrbubbles-src/bubbles-express-generator)
