@@ -1,10 +1,22 @@
 # bubbles-express-generator
 
+[![npm version](https://badge.fury.io/js/bubbles-express-generator.svg)](https://www.npmjs.com/package/bubbles-express-generator)
+
+## 📜 Inhaltsverzeichnis
+
+- [🔧 Usage](#🔧-usage-🔝)
+- [🧪 Variants](#🧪-variants-🔝)
+- [📁 Output](#📁-output-🔝)
+- [🏁 Flags](#🏁-flags-🔝)
+- [📖 Help](#📖-help-🔝)
+- [🤝 Contributions](#🤝-contributions-🔝)
+- [🔗 Links](#🔗-links-🔝)
+
 A simple CLI to scaffold Express.js starter projects.
 
 ![bubbles-express](bubbles-express.png)
 
-## 🔧 Usage
+## 🔧 Usage [🔝](#📜-inhaltsverzeichnis)
 
 You can use the CLI via `npx` (no installation needed):
 
@@ -24,7 +36,7 @@ Then you can run it with:
 bubbles-express
 ```
 
-## 🧪 Variants
+## 🧪 Variants [🔝](#📜-inhaltsverzeichnis)
 
 The generator supports different project types:
 
@@ -33,7 +45,7 @@ The generator supports different project types:
 - **(Supabase) PostgreSQL + Drizzle ORM + JavaScript**
 - **MongoDB (Atlas) + Mongoose ODM + JavaScript**
 
-## 📁 Output
+## 📁 Output [🔝](#📜-inhaltsverzeichnis)
 
 A new folder will be created with the generated code based on your selections.  
 If the current directory is not empty, you'll be prompted whether to overwrite it or choose a new name.  
@@ -48,7 +60,7 @@ npm run dev
 
 You're ready to go!
 
-## 🏁 Flags
+## 🏁 Flags [🔝](#📜-inhaltsverzeichnis)
 
 You can skip the interactive prompts by providing flags directly:
 
@@ -63,7 +75,7 @@ npx bubbles-express my-api --ts --pg
 
 If all necessary flags are provided, the generator will auto-run without any questions.
 
-## 📖 Help
+## 📖 Help [🔝](#📜-inhaltsverzeichnis)
 
 To display the help menu, you can run:
 
@@ -73,12 +85,12 @@ npx bubbles-express --help
 
 This will show a list of available flags and usage examples.
 
-## 🤝 Contributions
+## 🤝 Contributions [🔝](#📜-inhaltsverzeichnis)
 
 This is my very first npm package — so it's likely to have more quirks than I realized 😅  
 Feel free to open an issue for improvements or bug fixes, or submit a pull request directly.
 
-## 🔗 Links
+## 🔗 Links [🔝](#📜-inhaltsverzeichnis)
 
 - 📄 [Documentation](https://github.com/mrbubbles-src/bubbles-express-generator)
 - 🌐 [Website](https://github.com/mrbubbles-src/bubbles-express-generator)
