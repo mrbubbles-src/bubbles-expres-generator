@@ -12,7 +12,8 @@
   },
   "main": "index.js",
   "bin": {
-    "bubbles-express": "cli/index.js"
+    "bubbles-express": "cli/index.js",
+    "bubbles-express-generator": "cli/index.js"
   },
   "engines": {
     "node": ">=18"
