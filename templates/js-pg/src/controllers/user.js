@@ -1,7 +1,7 @@
-import { usersTable } from '@/db/schema.js';
-import { db } from '@/db/index.js';
+import { usersTable } from '../db/schema.js';
+import { db } from '../db/index.js';
 import { eq, or } from 'drizzle-orm';
-import { comparePassword, createJWT, hashPassword } from '@/lib/auth.js';
+import { comparePassword, createJWT, hashPassword } from '../lib/auth.js';
 
 export const createUser = async (req, res, next) => {
   try {
