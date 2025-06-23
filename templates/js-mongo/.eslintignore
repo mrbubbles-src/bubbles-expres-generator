@@ -1,5 +1,5 @@
 dist
 node_modules
 .eslintrc.cjs
-esbuild.config.ts
-drizzle.config.ts
+esbuild.config.js
+drizzle.config.js

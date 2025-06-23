@@ -1,4 +1,4 @@
-import { verifyJWT } from '@/lib/auth.js';
+import { verifyJWT } from '../lib/auth.js';
 
 export const verifyUserToken = (req, res, next) => {
   const token = req.cookies?.token;

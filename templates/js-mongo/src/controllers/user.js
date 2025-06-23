@@ -1,6 +1,6 @@
-import { comparePassword, createJWT, hashPassword } from '@/lib/auth.js';
-import User from '@/models/user.js';
-import db from '@/db/db.js';
+import { comparePassword, createJWT, hashPassword } from '../lib/auth.js';
+import User from '../models/user.js';
+import db from '../db/db.js';
 
 export const createUser = async (req, res, next) => {
   await db.connect();
