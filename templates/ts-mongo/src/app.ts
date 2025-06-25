@@ -3,8 +3,8 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 import { Request, Response } from 'express';
-import { errorHandler } from './middleware/error-handler.ts';
-import { router as userRouter } from '@/routes/user.ts';
+import { errorHandler } from './middleware/error-handler.js';
+import { router as userRouter } from './routes/user.js';
 
 const app = express();
 

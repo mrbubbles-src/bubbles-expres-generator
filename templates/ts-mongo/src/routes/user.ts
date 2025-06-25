@@ -1,14 +1,14 @@
 import express from 'express';
-import { createUser, verifyUser } from '@/controllers/user.ts';
-import { verifyUserToken } from '@/middleware/verify-user-token.ts';
-import { validateInputs } from '@/middleware/input-validation.ts';
-import { userValidationRules } from '@/lib/auth-rules.ts';
+import { createUser, verifyUser } from '../controllers/user.js';
+import { verifyUserToken } from '../middleware/verify-user-token.js';
+import { validateInputs } from '../middleware/input-validation.js';
+import { userValidationRules } from '../lib/auth-rules.js';
 
 export const router = express.Router();
 
 router
-	.route('/register')
-	.post(validateInputs(userValidationRules.register), createUser);
+  .route('/register')
+  .post(validateInputs(userValidationRules.register), createUser);
 router
-	.route('/login')
-	.post(verifyUserToken, validateInputs(userValidationRules.login), verifyUser);
+  .route('/login')
+  .post(verifyUserToken, validateInputs(userValidationRules.login), verifyUser);
