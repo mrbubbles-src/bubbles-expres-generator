@@ -5,12 +5,8 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon src/app.js",
-    "build": "node esbuild.config.js",
-    "start": "node dist/app.js",
-    "tsclean": "rm -rf dist",
-    "fullclean": "rm -rf dist node_modules package-lock.json",
-    "lint": "eslint src --ext .js",
-    "lint:fix": "eslint src --ext .js --fix"
+    "start": "node src/app.js",
+    "fullclean": "rm -rf node_modules package-lock.json"
   },
   "keywords": [],
   "author": "",
@@ -30,8 +26,7 @@
   },
   "devDependencies": {
     "drizzle-kit": "^0.31.1",
-    "esbuild": "^0.25.5",
-    "eslint": "^9.29.0",
+    "nodemon": "^3.1.10",
     "prettier": "^3.5.3"
   }
 }
