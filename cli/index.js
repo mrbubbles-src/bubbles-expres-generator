@@ -8,13 +8,38 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pkg = JSON.parse(
   readFileSync(path.join(__dirname, '..', 'package.json')),
 );
-updateNotifier({ pkg }).notify();
+const notifier = updateNotifier({ pkg, updateCheckInterval: 0 });
+
 import prompts from 'prompts';
 import fs from 'fs/promises';
 
 import kleur from 'kleur';
 import boxen from 'boxen';
 import ora from 'ora';
+
+if (notifier.update && process.stdout.isTTY) {
+  console.log(
+    boxen(
+      [
+        `🔔 Update available: ${kleur.dim(notifier.update.current)} ${kleur
+          .green()
+          .bold('→')} ${kleur.green().bold(notifier.update.latest)}`,
+        '',
+        `📦 Run ${kleur
+          .green()
+          .bold(`npm i -g ${notifier.update.name}`)} to update`,
+      ].join('\n'),
+      {
+        padding: 1,
+        margin: 1,
+        borderStyle: 'double',
+        borderColor: 'red',
+        title: '!! Update available !!',
+        titleAlignment: 'center',
+      },
+    ),
+  );
+}
 
 import { argv } from 'process';
 
@@ -43,7 +68,7 @@ if (args.includes('-h') || args.includes('--help')) {
       {
         padding: 1,
         margin: 1,
-        borderStyle: 'classic',
+        borderStyle: 'double',
         borderColor: 'magenta',
         title: 'Help',
         titleAlignment: 'center',
@@ -78,7 +103,7 @@ ${kleur.dim(
 ${kleur.gray(
   `project: ${flags.projectName} | language: ${flags.language} | database: ${flags.db}`,
 )}`
-    : `${kleur.magenta().bold("👋 Welcome to Bubbles' Express Generator!")}
+    : `👋 Welcome to ${kleur.magenta().bold("Bubbles' Express Generator")}!
 
 ${kleur.white("Answer a few questions and we'll get you set up quickly.")}
 
@@ -91,7 +116,7 @@ ${kleur.white("Answer a few questions and we'll get you set up quickly.")}
     boxen(introMessage, {
       padding: 1,
       margin: 1,
-      borderStyle: 'classic',
+      borderStyle: 'double',
       borderColor: hasFlags ? 'green' : 'magenta',
       title: hasFlags ? 'Auto Setup' : "Let's get started",
       titleAlignment: 'center',
@@ -293,7 +318,7 @@ const createProject = async (choices) => {
       {
         padding: { top: 1, bottom: 1, left: 2, right: 2 },
         margin: 1,
-        borderStyle: 'classic',
+        borderStyle: 'double',
         borderColor: 'green',
         title: 'Setup Complete',
         titleAlignment: 'center',
@@ -309,4 +334,11 @@ const createProject = async (choices) => {
   }
 };
 
-createProject(response);
+if (response.projectName && response.language && response.db) {
+  createProject(response);
+} else {
+  console.log(
+    kleur.yellow('\n⚠️  Project setup was canceled or incomplete.\n'),
+  );
+  process.exit(0);
+}
