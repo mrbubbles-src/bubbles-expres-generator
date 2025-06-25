@@ -3,9 +3,11 @@ import { execa } from 'execa';
 import fs from 'fs-extra';
 import path from 'path';
 
+const mockNotify = vi.fn();
+
 vi.mock('update-notifier', () => {
   return () => ({
-    notify: () => {},
+    notify: mockNotify,
   });
 });
 
@@ -44,7 +46,14 @@ describe('bubbles-express CLI', () => {
     await Promise.all(
       files.map(async (file) => {
         if (file !== '.gitkeep') {
-          await fs.remove(path.join(TEST_PROJECTS_DIR, file));
+          const fullPath = path.join(TEST_PROJECTS_DIR, file);
+          try {
+            if (await fs.pathExists(fullPath)) {
+              await fs.rm(fullPath, { recursive: true, force: true });
+            }
+          } catch (err) {
+            console.warn(`⚠️ Could not delete ${fullPath}:`, err.message);
+          }
         }
       }),
     );
