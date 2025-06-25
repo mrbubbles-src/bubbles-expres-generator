@@ -1,6 +1,6 @@
 {
   "name": "bubbles-express-generator",
-  "version": "1.0.17",
+  "version": "1.1.0",
   "description": "A simple CLI to scaffold Express.js starter projects.",
   "repository": {
     "type": "git",
@@ -25,7 +25,8 @@
     }
   ],
   "scripts": {
-    "test": "npx vitest run --testTimeout=30000",
+    "dev": "node cli/index.js",
+    "test": "npx vitest run --testTimeout=60000",
     "initialrelease": "npm publish --access public",
     "patch": "npm version patch && git add . && git commit -m 'feat: bump version' && git push --follow-tags && npm publish"
   },
